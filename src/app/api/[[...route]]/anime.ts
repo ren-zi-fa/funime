@@ -1,10 +1,8 @@
 import scrapeSingleAnime from "@/lib/scrapeSingleAnime";
 import episode from "@/utils/episode";
 import movie from "@/utils/movie";
-import { zValidator } from "@hono/zod-validator";
 import axios from "axios";
 import { Hono } from "hono";
-import { z } from "zod";
 
 const { BASEURL } = process.env;
 
