@@ -1,7 +1,10 @@
 import scrapeSingleAnime from "@/lib/scrapeSingleAnime";
+import episode from "@/utils/episode";
 import movie from "@/utils/movie";
+import { zValidator } from "@hono/zod-validator";
 import axios from "axios";
 import { Hono } from "hono";
+import { z } from "zod";
 
 const { BASEURL } = process.env;
 
@@ -13,15 +16,31 @@ const app = new Hono()
     const slug = c.req.param("slug");
     const { data } = await axios.get(`${BASEURL}/anime/${slug}`);
     const result = scrapeSingleAnime(data);
-    if (!result) return c.json ({message:"anime not found"}, 400)
-    return c.json({data:result});
-  }).get ("/:slug/episodes", async(c)=>{
-    const urlParts = c.req.url.split("/")
-    const animeSlug = urlParts[5]
-    const { data } = await axios.get(`${BASEURL}/episode/${animeSlug}`);
-    const result = await movie(data)
-    return c.json({result})
-  
+    if (!result) return c.json({ message: "anime not found" }, 400);
+    return c.json({ data: result });
   })
+  .get("/:slug/episodes", async (c) => {
+    const urlParts = c.req.url.split("/");
+    const animeSlug = urlParts[5];
+    const { data } = await axios.get(`${BASEURL}/episode/${animeSlug}`);
+    const result = await movie(data);
+    return c.json({ result });
+  })
+  .get("/:slug/episodes/:episode", async (c) => {
+    const episodeSlug = c.req.param("episode");
+    const episodeNumber = Number(episodeSlug);
+    if (isNaN(episodeNumber)) {
+      return c.json({ message: "Episode number must be a number" }, 400);
+    }
+    const urlParts = c.req.url.split("/");
+    const animeSlug = urlParts[5];
+
+    const data = await episode({
+      animeSlug: animeSlug,
+      episodeNumber: episodeNumber,
+    });
+
+    return c.json({ data });
+  });
 
 export default app;
