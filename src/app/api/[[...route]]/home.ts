@@ -17,7 +17,7 @@ const app = new Hono().get("/", async (c) => {
   ).toString();
   const ongoing_anime = scrapeOngoingAnime(ongoingAnimeEls);
   const complete_anime = scrapeCompleteAnime(completeAnimeEls);
-  return c.json({ ongoing_anime, complete_anime });
+  return c.json({ data: { ongoing_anime, complete_anime } });
 });
 
 export default app;
