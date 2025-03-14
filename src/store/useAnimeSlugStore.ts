@@ -15,9 +15,7 @@ export const useAnimeSlugStore = create<AnimeState>((set) => ({
   fetchAnime: async (slug) => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_APIURL}/anime/${slug}`
-      );
+      const response = await fetch(`api/anime/${slug}`);
       const result = await response.json();
       if (!result.data) throw new Error("Anime not found");
       set({

@@ -4,13 +4,13 @@ import { useAnimeSlugStore } from "@/store/useAnimeSlugStore";
 import { useHomeStore } from "@/store/useHomeStore";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
-import OngoingCard from "./_components/ongoingCard";
+// import OngoingCard from "./_components/ongoingCard";
 
 export default function Home() {
-
-  return (
-    <div className="">
-      <OngoingCard />
-    </div>
-  );
+  const { fetchAnime, ongoingAnime } = useHomeStore();
+  useEffect(() => {
+    fetchAnime();
+  }, []);
+  console.log(ongoingAnime);
+  return <div className="">{/* <OngoingCard /> */}</div>;
 }

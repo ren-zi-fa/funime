@@ -17,7 +17,7 @@ export const useHomeStore = create<AnimeState>((set) => ({
   fetchAnime: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/home`);
+      const response = await fetch(`api/home`);
       const result = await response.json();
 
       set({
