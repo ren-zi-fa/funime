@@ -1,19 +1,53 @@
 "use client";
 
 import { useAnimeSlugStore } from "@/store/useAnimeSlugStore";
-import { useHomeStore } from "@/store/useHomeStore";
 import { useParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function AnimeDetail() {
   const { slug } = useParams();
-  const { fetchAnime, data } = useAnimeSlugStore();
+
+  const { fetchAnimeDetail, data,loading } = useAnimeSlugStore();
 
   useEffect(() => {
-    fetchAnime(slug as string);
+    fetchAnimeDetail(slug as string);
+    // fetchData();
   }, [slug]);
   console.log(data);
+  // console.log(slug);
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]"></div>
+    <div className="h-fit bg-gray-300/30 mt-2 flex flex-col space-y-1 px-2">
+      <div className="p-4 bg-black text-white">
+        <p className="text-center">{}</p>
+      </div>
+      {/* <Image
+        src={poster}
+        width={140}
+        height={70}
+        alt={title}
+        className="mx-auto border-2 "
+        priority
+      />
+      <ul>
+        <li>Judul : {title}</li>
+        <li>Japanase: {japanese_title}</li>
+        <li>Skor: {rating}</li>
+        <li>Produser: {produser}</li>
+        <li>Tipe: {type}</li>
+        <li>Status: {status}</li>
+        <li>Total Episode: {episode_count}</li>
+        <li>Durasi: {duration}</li>
+        <li>Tanggal Rilis: {release_date}</li>
+        <li>Studio: {studio}</li>
+        <li>
+          Genre:{" "}
+          {genres.map((item: any, index) => (
+            <span key={index} className="mr-2">
+              {item.name}
+            </span>
+          ))}
+        </li>
+      </ul> */}
+    </div>
   );
 }
