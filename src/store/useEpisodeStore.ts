@@ -1,21 +1,21 @@
-import { anime } from "@/types/response";
+import { episode } from "@/types/response";
 import { create } from "zustand";
 
 interface AnimeState {
-  data: anime | null;
+  data: episode | null;
   loading: boolean;
   error: string | null;
-  fetchAnimeDetail: (slug: string) => Promise<void>;
+  fetchAnimeEpisode: (slug: string, episode: string) => Promise<void>;
 }
-
-export const useAnimeSlugStore = create<AnimeState>((set) => ({
+export const useEpisodeStore = create<AnimeState>((set) => ({
   data: null,
   loading: false,
   error: null,
-  fetchAnimeDetail: async (slug) => {
+
+  fetchAnimeEpisode: async (slug, episode) => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch(`/api/anime/${slug}`, {
+      const response = await fetch(`/api/anime/${slug}/episodes/${episode}`, {
         next: { revalidate: 10 },
       });
       const result = await response.json();

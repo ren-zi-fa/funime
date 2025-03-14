@@ -14,9 +14,11 @@ import {
 import { Input } from "../ui/input";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <div className="sticky top-0 w-full left-0 right-0 z-50 border-b-2 border-gray-100/60 py-4 backdrop-blur-lg backdrop-filter dark:border-gray-700">
@@ -56,7 +58,14 @@ export default function Navbar() {
           </SheetHeader>
           <div className="flex flex-col text-xl space-y-4 mb-32">
             <SheetClose asChild>
-              <Button variant="ghost">Home</Button>
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  router.push("/");
+                }}
+              >
+                Home
+              </Button>
             </SheetClose>
             <SheetClose asChild>
               <Button variant="ghost">Jadwal</Button>

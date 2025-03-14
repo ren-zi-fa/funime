@@ -17,7 +17,7 @@ export const useHomeStore = create<AnimeState>((set) => ({
   fetchAnime: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch(`/api/home`);
+      const response = await fetch(`/api/home`, { next: { revalidate: 10 } });
       const result = await response.json();
 
       set({
