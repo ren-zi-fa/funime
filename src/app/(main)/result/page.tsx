@@ -6,13 +6,13 @@ import { useSearchStore } from "@/store/useSearchStore";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
 
 export default function ResultSearch() {
   const searchParams = useSearchParams();
   const search = searchParams.get("search") ?? "none";
   const { data, fetchResult, loading } = useSearchStore();
+
   useEffect(() => {
     fetchResult(search);
   }, []);
@@ -27,25 +27,27 @@ export default function ResultSearch() {
         </h1>
       )}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4  md:grid-cols-6 lg:grid-cols-6 p-4">
-        {/* <Card className="relative group  shadow-md h-[250px] cursor-pointer">
-          <Link href={`/anime/${data?.slug}`}>
-            <Image
-              src={data?.poster}
-              alt={data?.title}
-              fill
-              className="object-cover w-full h-full"
-              priority
-            />
-            <p
-              className={cn(
-                "absolute bottom-0 w-full bg-black/50  mt-10 text-white text-center transition-all duration-200 overflow-hidden",
-                "group-hover:h-7  p-2"
-              )}
-            >
-              {data?.title}
-            </p>
-          </Link>
-        </Card> */}
+        {/* {data && (
+          <Card className="relative group  shadow-md h-[250px] cursor-pointer">
+            <Link href={`/anime/${data?.slug}`}>
+              <Image
+                src={data?.poster || `/anime.webp`}
+                alt={data?.title || "anime"}
+                fill
+                className="object-cover w-full h-full"
+                priority
+              />
+              <p
+                className={cn(
+                  "absolute bottom-0 w-full bg-black/50  mt-10 text-white text-center transition-all duration-200 overflow-hidden",
+                  "group-hover:h-7  p-2"
+                )}
+              >
+                {data?.title}
+              </p>
+            </Link>
+          </Card>
+        )} */}
       </div>
     </div>
   );

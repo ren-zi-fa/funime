@@ -2,13 +2,13 @@ import { searchResultAnime } from "@/types/response";
 import { create } from "zustand";
 
 interface AnimeState {
-  data: searchResultAnime | null;
+  data: searchResultAnime[];
   loading: boolean;
   error: string | null;
   fetchResult: (keyword: string) => Promise<void>;
 }
 export const useSearchStore = create<AnimeState>((set) => ({
-  data: null,
+  data: [],
   loading: false,
   error: null,
   fetchResult: async (keyword) => {
