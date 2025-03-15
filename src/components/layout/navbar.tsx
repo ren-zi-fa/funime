@@ -21,14 +21,19 @@ export default function Navbar() {
   const router = useRouter();
 
   return (
-    <div  className="sticky top-0 w-full left-0 right-0 z-50 border-b-2 border-gray-100/60 py-4 backdrop-blur-lg backdrop-filter dark:border-gray-700">
+    <div className="sticky top-0 w-full left-0 right-0 z-50 border-b-2 border-gray-100/60 py-4 backdrop-blur-lg backdrop-filter dark:border-gray-700">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger
           className="flex flex-row items-center p-1  gap-4 w-full"
           onClick={() => setOpen(true)}
         >
           <AlignJustifyIcon strokeWidth={2} />
-          <Input className="w-full " disabled placeholder="search anime..." inert/>
+          <Input
+            className="w-full "
+            disabled
+            placeholder="search anime..."
+            inert
+          />
         </SheetTrigger>
         <SheetContent
           side="bottom"
@@ -68,7 +73,14 @@ export default function Navbar() {
               </Button>
             </SheetClose>
             <SheetClose asChild>
-              <Button variant="ghost">Jadwal</Button>
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  router.push("/jadwal");
+                }}
+              >
+                Jadwal
+              </Button>
             </SheetClose>
           </div>
         </SheetContent>

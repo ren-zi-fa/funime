@@ -15,7 +15,7 @@ export default function CompletedCard() {
   },[]);
   if (loading) return <p>Loading..</p>;
   return (
-    <div className="grid grid-cols-2 p-4 gap-2">
+    <div className="grid grid-cols-2 lg:grid-cols-6 sm:grid-cols-4 p-4 gap-2">
       {completeAnime.map((anime, index) => (
         <Card
           className="relative group  shadow-md h-[250px] cursor-pointer"

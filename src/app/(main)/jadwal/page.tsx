@@ -12,11 +12,12 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 export default function JadwalPage() {
-  const { data, fetchSchedule } = useScheduleStore();
+  const { data, fetchSchedule,loading } = useScheduleStore();
   useEffect(() => {
     fetchSchedule();
   }, []);
 
+  if (loading) return <p>Loading.....</p>
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-4 mx-auto w-fit">
