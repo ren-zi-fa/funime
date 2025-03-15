@@ -1,6 +1,5 @@
 "use client";
 
-import { Separator } from "@/components/ui/separator";
 import { useAnimeSlugStore } from "@/store/useAnimeSlugStore";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,7 +23,7 @@ export default function AnimeDetail() {
   if (loading) return <p>Loading...</p>;
 
   if (!loading && data === null) return notFound();
-  console.log(data)
+
   return (
     <div className="h-fit bg-gray-300/30 mt-2 flex flex-col space-y-1 px-2">
       {data && (

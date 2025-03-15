@@ -3,9 +3,9 @@ import OngoingCard from "./_components/ongoingCard";
 
 export default function Home() {
   return (
-    <div className="">
+    <>
       <OngoingCard />
       <CompletedCard />
-    </div>
+    </>
   );
 }
