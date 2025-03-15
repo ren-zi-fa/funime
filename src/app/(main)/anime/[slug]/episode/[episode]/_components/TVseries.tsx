@@ -2,10 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import { episode } from "@/types/response";
-import Link from "next/link";
-import { notFound, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-type TVseriesProps = episode & {
+type TVseriesProps = Omit<
+  episode,
+  "anime" | "download_urls" | "next_episode" | "  previous_episode"
+> & {
   slug: string;
   episodeSlug: string;
 };
@@ -13,17 +15,12 @@ type TVseriesProps = episode & {
 export default function TVseries({
   stream_url,
   episode,
-  anime,
-  download_urls,
   has_next_episode,
   has_previous_episode,
-  next_episode,
-  previous_episode,
   slug,
   episodeSlug,
 }: TVseriesProps) {
   const router = useRouter();
-
 
   const NextButton = () => {
     if (has_next_episode) {

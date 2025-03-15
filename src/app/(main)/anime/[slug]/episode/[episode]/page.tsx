@@ -4,6 +4,7 @@ import { useEpisodeStore } from "@/store/useEpisodeStore";
 import { notFound, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import TVseries from "./_components/TVseries";
+import DownloadStream from "./_components/DownloadStream";
 
 export default function EpisodePage() {
   const { episode, slug } = useParams();
@@ -23,19 +24,20 @@ export default function EpisodePage() {
   return (
     <div className="">
       {data && (
-        <TVseries
-          stream_url={data?.stream_url}
-          episode={data?.episode}
-          anime={data.anime}
-          download_urls={data.download_urls}
-          has_next_episode={data.has_next_episode}
-          has_previous_episode={data.has_previous_episode}
-          next_episode={data.next_episode}
-          previous_episode={data.previous_episode}
-          episodeSlug={episode as string}
-          slug={slug as string}
-        />
+        <div className="flex flex-col space-y-3">
+          <TVseries
+            stream_url={data?.stream_url}
+            episode={data?.episode}
+            has_next_episode={data.has_next_episode}
+            has_previous_episode={data.has_previous_episode}
+            previous_episode={data.previous_episode}
+            episodeSlug={episode as string}
+            slug={slug as string}
+          />
+          <DownloadStream download_urls={data.download_urls}/>
+        </div>
       )}
+
     </div>
   );
 }
