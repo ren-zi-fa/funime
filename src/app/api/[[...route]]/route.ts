@@ -3,6 +3,7 @@ import { handle } from "hono/vercel";
 import anime from "./anime";
 import home from "./home";
 import schedule from "./schedule";
+import search from "./search";
 import test from "./test";
 
 export const runtime = "edge";
@@ -13,6 +14,7 @@ const routes = app
   .route("/anime", anime)
   .route("/home", home)
   .route("/schedule", schedule)
+  .route("/search", search)
   .route("/", test);
 
 export const GET = handle(app);
