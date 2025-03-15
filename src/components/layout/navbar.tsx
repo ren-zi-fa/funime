@@ -12,14 +12,24 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import { Input } from "../ui/input";
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
+  const searchRef = useRef<HTMLInputElement>(null);
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (searchRef.current?.value) {
+      router.push(`/result/?search=${searchRef.current.value}`);
+      searchRef.current.value = "";
+      searchRef.current.blur();
+      setOpen(false);
+    }
+  };
   return (
     <div className="sticky top-0 w-full left-0 right-0 z-50 border-b-2 border-gray-100/60 py-4 backdrop-blur-lg backdrop-filter dark:border-gray-700">
       <Sheet open={open} onOpenChange={setOpen}>
@@ -42,11 +52,11 @@ export default function Navbar() {
         >
           <SheetHeader>
             <SheetDescription />
-            <form>
+            <form onSubmit={handleSearch}>
               <SheetTitle>
                 <div className="flex flex-row items-center gap-3">
                   <Input
-                    autoFocus={false}
+                    ref={searchRef}
                     className="w-full h-8"
                     placeholder="search anime..."
                   />
