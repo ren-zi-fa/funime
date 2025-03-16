@@ -11,8 +11,8 @@ import { useEffect, useState } from "react";
 
 export default function ResultSearch() {
   const { keyword } = useParams();
-  const { data, fetchResult } = useSearchStore();
-  const [loading, setLoading] = useState(true);
+  const { data, fetchResult,error } = useSearchStore();
+  const [loading, setLoading,] = useState(true);
   useEffect(() => {
     if (keyword) {
       setLoading(true);
@@ -23,8 +23,8 @@ export default function ResultSearch() {
   }, [keyword]);
   if (loading) return <LoadingGif />;
 
-  if (!loading && !data) return notFound();
-  console.log(data);
+ 
+
   return (
     <div className="container py-6 flex flex-col gap-4 h-screen">
       <h1 className="text-center text-xl font-bold">

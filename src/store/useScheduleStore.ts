@@ -18,7 +18,6 @@ export const useScheduleStore = create<AnimeState>((set) => ({
         next: { revalidate: 10 },
       });
       const result = await response.json();
-      if (!result.data) throw new Error("Anime not found");
       set({
         data: result.data,
         loading: false,

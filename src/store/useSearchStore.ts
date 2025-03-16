@@ -16,7 +16,9 @@ export const useSearchStore = create<AnimeState>((set) => ({
         next: { revalidate: 2 },
       });
       const result = await response.json();
-      if (!result.data) throw new Error("Anime not found");
+      if (!response.ok) {
+        set({ error: result });
+      }
       set({
         data: result.data,
       });

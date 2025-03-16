@@ -9,24 +9,19 @@ import { useEffect, useState } from "react";
 
 export default function AnimeDetail() {
   const { slug } = useParams();
-  const [loading, setLoading] = useState(true);
 
-  const { fetchAnimeDetail, data } = useAnimeSlugStore();
+  const { fetchAnimeDetail, data, loading,error } = useAnimeSlugStore();
 
   useEffect(() => {
     if (slug) {
-      setLoading(true);
-      fetchAnimeDetail(slug as string).finally(() => {
-        setLoading(false);
-      });
+      fetchAnimeDetail(slug as string);
     }
   }, [slug]);
   if (loading) return <LoadingGif />;
-
-  if (!loading && data === null) return notFound();
+ if(error)return notFound()
 
   return (
-    <div className="h-fit bg-gray-300/30 mt-2 flex flex-col space-y-1 px-2">
+    <div className="h-full bg-gray-300/30 mt-2 flex flex-col space-y-1 px-2">
       {data && (
         <div className=" flex-col space-y-1 px-2">
           <div className="p-4 bg-black text-white">
