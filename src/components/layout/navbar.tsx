@@ -12,9 +12,9 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import { Input } from "../ui/input";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { handle } from "hono/vercel";
+
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);

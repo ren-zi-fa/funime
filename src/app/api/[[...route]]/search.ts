@@ -14,7 +14,7 @@ const app = new Hono()
     );
     const html = response.data;
     const searchResult = scrapeSearchResult(html);
-    return c.json({ data: { searchResult } });
+    return c.json({ data: searchResult });
   });
 
 export default app;

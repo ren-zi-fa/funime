@@ -3,28 +3,25 @@ import { create } from "zustand";
 
 interface AnimeState {
   data: searchResultAnime[];
-  loading: boolean;
   error: string | null;
   fetchResult: (keyword: string) => Promise<void>;
 }
 export const useSearchStore = create<AnimeState>((set) => ({
   data: [],
-  loading: false,
   error: null,
   fetchResult: async (keyword) => {
-    set({ loading: true, error: null });
+    set({ error: null });
     try {
       const response = await fetch(`/api/search/${keyword}`, {
-        next: { revalidate: 10 },
+        next: { revalidate: 2 },
       });
       const result = await response.json();
-
+      if (!result.data) throw new Error("Anime not found");
       set({
         data: result.data,
-        loading: false,
       });
     } catch (error) {
-      set({ error: "Failed to fetch anime data", loading: false });
+      set({ error: "Failed to fetch anime data" });
     }
   },
 }));
