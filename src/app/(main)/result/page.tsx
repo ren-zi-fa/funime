@@ -34,8 +34,8 @@ export default function ResultSearch() {
                 src={data?.poster || `/anime.webp`}
                 alt={data?.title || "anime"}
                 fill
-                className="object-cover w-full h-full"
-                priority
+                className="object-cover "
+                
               />
               <p
                 className={cn(
