@@ -5,27 +5,27 @@ import { cn } from "@/lib/utils";
 import { useSearchStore } from "@/store/useSearchStore";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function ResultSearch() {
-  const searchParams = useSearchParams();
-  const search = searchParams.get("search") ?? "none";
+  const {keyword} = useParams();
+  console.log(keyword)
   const { data, fetchResult, loading } = useSearchStore();
 
-  useEffect(() => {
-    fetchResult(search);
-  }, []);
-  console.log(data);
+  // useEffect(() => {
+  //   fetchResult(search);
+  // }, []);
+  // console.log(data);
   return (
-    <div className="container py-6 flex flex-col gap-4">
-      {loading ? (
-        <p className="text-center text-xl font-bold">Loading....</p>
-      ) : (
-        <h1 className="text-center text-xl font-bold">
-          Hasil pencarian: {search}
-        </h1>
-      )}
+    // <div className="container py-6 flex flex-col gap-4">
+    //   {loading ? (
+    //     <p className="text-center text-xl font-bold">Loading....</p>
+    //   ) : (
+    //     <h1 className="text-center text-xl font-bold">
+    //       Hasil pencarian: {search}
+    //     </h1>
+    //   )}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4  md:grid-cols-6 lg:grid-cols-6 p-4">
         {/* {data && (
           <Card className="relative group  shadow-md h-[250px] cursor-pointer">
@@ -49,6 +49,6 @@ export default function ResultSearch() {
           </Card>
         )} */}
       </div>
-    </div>
+    // </div>
   );
 }

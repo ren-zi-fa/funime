@@ -14,20 +14,21 @@ import {
 import { Input } from "../ui/input";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { handle } from "hono/vercel";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const [keyword, setkeyword] = useState("");
 
-  const searchRef = useRef<HTMLInputElement>(null);
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (searchRef.current?.value) {
-      router.push(`/result/?search=${searchRef.current.value}`);
-      searchRef.current.value = "";
-      searchRef.current.blur();
-      setOpen(false);
+  const handleSearch = () => {
+    if (!keyword.trim()) return;
+    router.push(`/result/${keyword}`);
+  };
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch(); 
+      setOpen(false)
     }
   };
   return (
@@ -52,24 +53,28 @@ export default function Navbar() {
         >
           <SheetHeader>
             <SheetDescription />
-            <form onSubmit={handleSearch}>
-              <SheetTitle>
-                <div className="flex flex-row items-center gap-3">
-                  <Input
-                    ref={searchRef}
-                    className="w-full h-8"
-                    placeholder="search anime..."
-                  />
+
+            <SheetTitle>
+              <div className="flex flex-row items-center gap-3">
+                <Input
+                  value={keyword}
+                  onChange={(e) => setkeyword(e.target.value)}
+                  className="w-full h-8"
+                  placeholder="search anime..."
+                  onKeyDown={handleKeyDown} 
+                />
+                <SheetClose asChild>
                   <Button
                     size="icon"
                     className="bg-blue-500 hover:bg-blue-400 text-white"
                     type="submit"
+                    onClick={handleSearch}
                   >
                     <Search />
                   </Button>
-                </div>
-              </SheetTitle>
-            </form>
+                </SheetClose>
+              </div>
+            </SheetTitle>
           </SheetHeader>
           <div className="flex flex-col text-xl space-y-4 mb-32">
             <SheetClose asChild>
