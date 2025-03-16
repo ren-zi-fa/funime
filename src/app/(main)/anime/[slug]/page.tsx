@@ -21,7 +21,7 @@ export default function AnimeDetail() {
       });
     }
   }, [slug]);
-  if (loading) return <LoadingGif/>;
+  if (loading) return <LoadingGif />;
 
   if (!loading && data === null) return notFound();
 
@@ -59,7 +59,12 @@ export default function AnimeDetail() {
                 </span>
               ))}
             </li>
-            <li>Synopsis: <br />{data.synopsis}</li>
+            {data.synopsis && (
+              <li>
+                Synopsis: <br />
+                {data.synopsis}
+              </li>
+            )}
           </ul>
         </div>
       )}
@@ -68,16 +73,14 @@ export default function AnimeDetail() {
           {data?.episode_lists.map((item, index) => (
             <Link
               href={`/anime/${slug}/episode/${item.episode_number}`}
-              className="bg-red-600 text-white underline p-3"
+              className="bg-zinc-900 text-white underline p-3"
               key={index}
             >
-              <p>{item.slug}</p>
+              <p>{item.episode}</p>
             </Link>
           ))}
         </div>
       )}
-
-
     </div>
   );
 }

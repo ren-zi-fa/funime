@@ -3,7 +3,7 @@ import episode from "@/utils/episode";
 import axios from "axios";
 import { Hono } from "hono";
 
-const { BASEURL } = process.env;
+const { BASE_URL } = process.env;
 
 const app = new Hono()
   .get("/", async (c) => {
@@ -11,7 +11,7 @@ const app = new Hono()
   })
   .get("/:slug", async (c) => {
     const slug = c.req.param("slug");
-    const { data } = await axios.get(`${BASEURL}/anime/${slug}`);
+    const { data } = await axios.get(`${BASE_URL}/anime/${slug}`);
     const result = scrapeSingleAnime(data);
     if (!result) return c.json({ message: "anime not found" }, 400);
     return c.json({ data: result });

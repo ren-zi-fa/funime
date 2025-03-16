@@ -4,10 +4,10 @@ import axios from "axios";
 import { load } from "cheerio";
 import { Hono } from "hono";
 
-const { BASEURL } = process.env;
+const { BASE_URL } = process.env;
 
 const app = new Hono().get("/", async (c) => {
-  const { data } = await axios.get(BASEURL as string);
+  const { data } = await axios.get(BASE_URL as string);
   const $ = load(data);
   const ongoingAnimeEls = $(
     ".venutama .rseries .rapi:first .venz ul li"

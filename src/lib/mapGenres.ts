@@ -1,7 +1,7 @@
 import { load } from 'cheerio';
 import type { genre as genreType } from "@/types/response";
 
-const { BASEURL } = process.env;
+const { BASE_URL } = process.env;
 const mapGenres = (html: string): genreType[] => {
   const result: genreType[] = [];
   const genres = html.split('</a>')
@@ -14,7 +14,7 @@ const mapGenres = (html: string): genreType[] => {
     result.push({
       name: $('a').text(),
       slug: $('a').attr('href')?.replace(/^https:\/\/otakudesu\.[a-zA-Z0-9-]+\/genres\//, '').replace('/', ''),
-      otakudesu_url: `${BASEURL}${$('a').attr('href')}`
+      otakudesu_url: `${BASE_URL}${$('a').attr('href')}`
     });
   });
 

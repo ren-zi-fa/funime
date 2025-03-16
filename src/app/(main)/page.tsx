@@ -3,7 +3,7 @@ import OngoingCard from "./_components/ongoingCard";
 
 export default function Home() {
   return (
-    <div className="ms-6">
+    <div className="ms-6 h-full">
       <OngoingCard />
       <CompletedCard />
     </div>

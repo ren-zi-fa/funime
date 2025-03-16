@@ -62,6 +62,7 @@ export default function Navbar() {
                   className="w-full h-8"
                   placeholder="search anime..."
                   onKeyDown={handleKeyDown} 
+                  type="search"
                 />
                 <SheetClose asChild>
                   <Button

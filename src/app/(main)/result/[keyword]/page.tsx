@@ -26,7 +26,7 @@ export default function ResultSearch() {
   if (!loading && !data) return notFound();
   console.log(data);
   return (
-    <div className="container py-6 flex flex-col gap-4">
+    <div className="container py-6 flex flex-col gap-4 h-screen">
       <h1 className="text-center text-xl font-bold">
         Hasil pencarian: {decodeURIComponent(keyword as string)}
       </h1>
