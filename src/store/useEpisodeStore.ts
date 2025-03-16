@@ -1,8 +1,9 @@
-import { episode } from "@/types/response";
+
+import { EpisodeType } from "@/types";
 import { create } from "zustand";
 
 interface AnimeState {
-  data: episode | null;
+  data: EpisodeType | null;
   loading: boolean;
   error: string | null;
   fetchAnimeEpisode: (slug: string, episode: string) => Promise<void>;

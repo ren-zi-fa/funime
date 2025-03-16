@@ -1,11 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { episode } from "@/types/response";
+import { episodeSchema } from "@/schemas/anime.schema";
+import { EpisodeType } from "@/types";
 import { useRouter } from "next/navigation";
+import { z } from "zod";
 
 type TVseriesProps = Omit<
-  episode,
+  EpisodeType,
   "anime" | "download_urls" | "next_episode" | "  previous_episode"
 > & {
   slug: string;

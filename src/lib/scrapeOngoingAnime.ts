@@ -1,8 +1,6 @@
-import { ongoingAnimeSchema } from "@/schemas/anime.schema";
+import { OngoingAnime } from "@/types";
 import { load } from "cheerio";
-import { z } from "zod";
 
-type OngoingAnime = z.infer<typeof ongoingAnimeSchema>;
 const scrapeOngoingAnime = (html: string): OngoingAnime[] => {
   const result: OngoingAnime[] = [];
   const animes = html

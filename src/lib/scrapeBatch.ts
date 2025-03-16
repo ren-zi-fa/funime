@@ -1,7 +1,7 @@
+import { BatchType } from '@/types';
 import { load } from 'cheerio';
-import type { batch as batchType } from '@/types/response';
 
-const scrapeBatch = (html: string): batchType => {
+const scrapeBatch = (html: string): BatchType => {
   const $ = load(html);
   const batch = $('.download2 .batchlink h4').text();
   const urlGroups = $('.download2 .batchlink ul li').toString()

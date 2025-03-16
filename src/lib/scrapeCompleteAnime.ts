@@ -1,9 +1,6 @@
-import { completeAnimeSchema } from '@/schemas/anime.schema';
+import { CompleteAnime } from '@/types';
 import { load } from 'cheerio';
-import { z } from 'zod';
 
-
-type CompleteAnime = z.infer<typeof completeAnimeSchema>
 const scrapeCompleteAnime = (html: string): CompleteAnime[] => {
   const result: CompleteAnime[] = [];
   const animes = html.split('</li>')

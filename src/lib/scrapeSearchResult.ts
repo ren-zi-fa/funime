@@ -1,14 +1,15 @@
 import { load } from 'cheerio';
 import mapGenres from './mapGenres';
-import type { searchResultAnime } from '@/types/response';
+import { SearchResultAnime } from '@/types';
 
-const scrapeSearchResult = (html: string): searchResultAnime[] => {
+
+const scrapeSearchResult = (html: string): SearchResultAnime[] => {
   const $ = load(html);
   const animes = $('.chivsrc li').toString()
     .split('</li>')
     .filter(item => item.trim() !== '')
     .map(item => `${item}</li>`);
-  const searchResult: searchResultAnime[] = [];
+  const searchResult: SearchResultAnime[] = [];
 
   animes.forEach(anime => {
     const $ = load(anime);

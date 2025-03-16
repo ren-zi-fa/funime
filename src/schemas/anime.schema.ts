@@ -21,9 +21,19 @@ const recommendationsSchema = z.object({
 });
 
 const batchSchema = z.object({
-  slug: z.string().optional(),
-  otakudesu_url: z.string().optional(),
-  uploaded_at: z.string().optional(),
+  batch: z.string().optional(),
+  download_urls: z.array(
+    z.object({
+      resolution: z.string().optional(),
+      file_size: z.string().optional(),
+      urls: z.array(
+        z.object({
+          provider: z.string().optional(),
+          url: z.string().optional(),
+        })
+      ),
+    })
+  ),
 });
 
 const animeSchema = z.object({
@@ -41,7 +51,13 @@ const animeSchema = z.object({
   studio: z.string().optional(),
   genres: z.array(genreSchema),
   synopsis: z.string().optional(),
-  batch: batchSchema.nullable(),
+  batch: z
+    .object({
+      slug: z.string().optional(),
+      otakudesu_url: z.string().optional(),
+      uploaded_at: z.string().optional(),
+    })
+    .nullable(),
   episode_lists: z.array(episodeListSchema),
   recommendations: z.array(recommendationsSchema),
 });
@@ -158,6 +174,7 @@ export {
   genreSchema,
   episodeListSchema,
   episodeSchema,
+  batchSchema,
   batchDownloadSchema,
   scheduleByDaySchema,
 };

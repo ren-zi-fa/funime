@@ -1,9 +1,10 @@
+import { GenreType } from '@/types';
 import { load } from 'cheerio';
-import type { genre as genreType } from "@/types/response";
+
 
 const { BASE_URL } = process.env;
-const mapGenres = (html: string): genreType[] => {
-  const result: genreType[] = [];
+const mapGenres = (html: string): GenreType[] => {
+  const result: GenreType[] = [];
   const genres = html.split('</a>')
     .filter(item => item.trim() !== '')
     .map(item => `${item}</a>`);

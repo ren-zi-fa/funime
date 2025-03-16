@@ -1,8 +1,8 @@
-import { searchResultAnime } from "@/types/response";
+import { SearchResultAnime } from "@/types";
 import { create } from "zustand";
 
 interface AnimeState {
-  data: searchResultAnime[];
+  data: SearchResultAnime[];
   error: string | null;
   fetchResult: (keyword: string) => Promise<void>;
 }

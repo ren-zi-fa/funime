@@ -1,9 +1,9 @@
-import { completeAnime, ongoingAnime } from "@/types/response";
+import { CompleteAnime, OngoingAnime } from "@/types";
 import { create } from "zustand";
 
 interface AnimeState {
-  ongoingAnime: ongoingAnime[];
-  completeAnime: completeAnime[];
+  ongoingAnime: OngoingAnime[];
+  completeAnime: CompleteAnime[];
   loading: boolean;
   error: string | null;
   fetchAnime: () => Promise<void>;

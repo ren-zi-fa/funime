@@ -1,9 +1,9 @@
-import { anime } from "@/types/response";
-import { error } from "console";
+
+import { Anime } from "@/types";
 import { create } from "zustand";
 
 interface AnimeState {
-  data: anime | null;
+  data: Anime | null;
   error: string | null;
   loading: boolean;
 

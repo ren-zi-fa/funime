@@ -1,5 +1,8 @@
+import { scheduleByDaySchema } from '@/schemas/anime.schema';
+import { ScheduleByDay } from '@/types';
 import { load } from 'cheerio';
-import { ScheduleByDay } from '@/types/response';
+import { z } from 'zod';
+
 
 const extractSlugFromUrl = (url: string): string => {
   const parts = url.split('/');

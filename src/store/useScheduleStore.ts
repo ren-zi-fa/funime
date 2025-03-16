@@ -1,4 +1,5 @@
-import { ScheduleByDay } from "@/types/response";
+
+import { ScheduleByDay } from "@/types";
 import { create } from "zustand";
 
 interface AnimeState {

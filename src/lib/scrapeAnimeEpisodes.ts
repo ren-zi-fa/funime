@@ -1,33 +1,36 @@
-import { load } from 'cheerio';
-import type { episode_list } from '@/types/response';
+import { Episode_list } from "@/types";
+import { load } from "cheerio";
 
-const scrapeAnimeEpisodes = (html: string): episode_list[] | undefined => {
-  const result: episode_list[] = [];
+const scrapeAnimeEpisodes = (html: string): Episode_list[] | undefined => {
+  const result: Episode_list[] = [];
   let $ = load(html);
-  $ = load(`<div> ${$('.episodelist').toString()}</div>`);
+  $ = load(`<div> ${$(".episodelist").toString()}</div>`);
 
-  const episodeList = $('.episodelist:nth-child(2) ul')
+  const episodeList = $(".episodelist:nth-child(2) ul")
     .html()
-    ?.split('</li>')
-    .filter(item => item.trim() !== '')
-    .map(item => `${item}</li>`);
+    ?.split("</li>")
+    .filter((item) => item.trim() !== "")
+    .map((item) => `${item}</li>`);
 
   if (!episodeList) return undefined;
 
   for (const episode of episodeList) {
     const $ = load(episode);
-    const titleText = $('li span:first a')?.text();
+    const titleText = $("li span:first a")?.text();
 
     const episodeNumber = titleText
-      ?.replace(/^.*Episode\s+/, '')
-      .replace(/\D.*$/, '')
+      ?.replace(/^.*Episode\s+/, "")
+      .replace(/\D.*$/, "")
       .trim();
 
     result.unshift({
       episode: titleText,
       episode_number: episodeNumber ? parseInt(episodeNumber, 10) : undefined,
-      slug: $('li span:first a')?.attr('href')?.replace(/^https:\/\/otakudesu\.[a-zA-Z0-9-]+\/episode\//, '').replace('/', ''),
-      otakudesu_url: $('li span:first a')?.attr('href')
+      slug: $("li span:first a")
+        ?.attr("href")
+        ?.replace(/^https:\/\/otakudesu\.[a-zA-Z0-9-]+\/episode\//, "")
+        .replace("/", ""),
+      otakudesu_url: $("li span:first a")?.attr("href"),
     });
   }
 

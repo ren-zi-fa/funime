@@ -1,6 +1,6 @@
-import { episode } from "@/types/response";
+import { EpisodeType } from "@/types";
 
-type DownloadStreamProps = Pick<episode, "download_urls">;
+type DownloadStreamProps = Pick<EpisodeType, "download_urls">;
 
 export default function DownloadStream({ download_urls }: DownloadStreamProps) {
   return (
