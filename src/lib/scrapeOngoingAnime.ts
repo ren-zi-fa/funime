@@ -1,23 +1,29 @@
-import { load } from 'cheerio';
-import type { ongoingAnime } from '@/types/response';
+import { ongoingAnimeSchema } from "@/schemas/anime.schema";
+import { load } from "cheerio";
+import { z } from "zod";
 
-const scrapeOngoingAnime = (html: string): ongoingAnime[] => {
-  const result: ongoingAnime[] = [];
-  const animes = html.split('</li>')
-    .filter(item => item.trim() !== '')
-    .map(item => `${item}</li>`);
+type OngoingAnime = z.infer<typeof ongoingAnimeSchema>;
+const scrapeOngoingAnime = (html: string): OngoingAnime[] => {
+  const result: OngoingAnime[] = [];
+  const animes = html
+    .split("</li>")
+    .filter((item) => item.trim() !== "")
+    .map((item) => `${item}</li>`);
 
-  animes.forEach(anime => {
+  animes.forEach((anime) => {
     const $ = load(anime);
 
     result.push({
-      title: $('.detpost .thumb .thumbz .jdlflm').text(),
-      slug: $('.detpost .thumb a').attr('href')?.replace(/^https:\/\/otakudesu\.[a-zA-Z0-9-]+\/anime\//, '').replace('/', ''),
-      poster: $('.detpost .thumb .thumbz img').attr('src'),
-      current_episode: $('.detpost .epz').text().trim(),
-      release_day: $('.detpost .epztipe').text().trim(),
-      newest_release_date: $('.detpost .newnime').text(),
-      otakudesu_url: $('.detpost .thumb a').attr('href')
+      title: $(".detpost .thumb .thumbz .jdlflm").text(),
+      slug: $(".detpost .thumb a")
+        .attr("href")
+        ?.replace(/^https:\/\/otakudesu\.[a-zA-Z0-9-]+\/anime\//, "")
+        .replace("/", ""),
+      poster: $(".detpost .thumb .thumbz img").attr("src"),
+      current_episode: $(".detpost .epz").text().trim(),
+      release_day: $(".detpost .epztipe").text().trim(),
+      newest_release_date: $(".detpost .newnime").text(),
+      otakudesu_url: $(".detpost .thumb a").attr("href"),
     });
   });
 

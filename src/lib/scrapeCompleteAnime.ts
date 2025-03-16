@@ -1,8 +1,11 @@
+import { completeAnimeSchema } from '@/schemas/anime.schema';
 import { load } from 'cheerio';
-import { completeAnime } from '@/types/response';
+import { z } from 'zod';
 
-const scrapeCompleteAnime = (html: string): completeAnime[] => {
-  const result: completeAnime[] = [];
+
+type CompleteAnime = z.infer<typeof completeAnimeSchema>
+const scrapeCompleteAnime = (html: string): CompleteAnime[] => {
+  const result: CompleteAnime[] = [];
   const animes = html.split('</li>')
     .filter(item => item.trim() !== '')
     .map(item => `${item}</li>`);
