@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingGif from "@/components/layout/loadGift";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useSearchStore } from "@/store/useSearchStore";
@@ -20,7 +21,7 @@ export default function ResultSearch() {
       });
     }
   }, [keyword]);
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingGif />;
 
   if (!loading && !data) return notFound();
   console.log(data);
@@ -34,7 +35,7 @@ export default function ResultSearch() {
           {data.map((item: any) => (
             <Card
               key={item.slug}
-              className="relative group shadow-md h-[250px] cursor-pointer"
+              className="relative group shadow-md py-2 px-2 rounded-none  h-50 w-40 cursor-pointer"
             >
               <Link
                 href={`/anime/${item.slug}`}

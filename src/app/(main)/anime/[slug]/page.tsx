@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingGif from "@/components/layout/loadGift";
 import { useAnimeSlugStore } from "@/store/useAnimeSlugStore";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,7 +21,7 @@ export default function AnimeDetail() {
       });
     }
   }, [slug]);
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingGif/>;
 
   if (!loading && data === null) return notFound();
 

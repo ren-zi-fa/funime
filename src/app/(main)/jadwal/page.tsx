@@ -1,4 +1,5 @@
 "use client";
+import LoadingGif from "@/components/layout/loadGift";
 import {
   Table,
   TableBody,
@@ -12,15 +13,15 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 export default function JadwalPage() {
-  const { data, fetchSchedule,loading } = useScheduleStore();
+  const { data, fetchSchedule, loading } = useScheduleStore();
   useEffect(() => {
     fetchSchedule();
   }, []);
 
-  if (loading) return <p>Loading.....</p>
+  if (loading) return <LoadingGif />;
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-4 mx-auto w-fit">
+      <div className="grid grid-cols-1 lg:grid-cols-4 mx-auto w-fit justify-center">
         {data.map((item, index) => (
           <Table key={index} className="w-[250px] border border-white ">
             <TableHeader>
@@ -34,7 +35,10 @@ export default function JadwalPage() {
               {item.anime_list.map((anime, idx) => (
                 <TableRow key={idx}>
                   <TableCell className="text-black text-center">
-                    <Link href={`/anime/${anime.slug}`} className="hover:underline">
+                    <Link
+                      href={`/anime/${anime.slug}`}
+                      className="hover:underline"
+                    >
                       {anime.anime_name.split(" ").slice(0, 6).join(" ")}
                     </Link>
                   </TableCell>

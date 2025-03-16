@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingGif from "@/components/layout/loadGift";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useHomeStore } from "@/store/useHomeStore";
@@ -13,7 +14,7 @@ export default function CompletedCard() {
   useEffect(() => {
     fetchAnime();
   }, []);
-  if (loading) return <p>Loading..</p>;
+  if (loading) return <LoadingGif/>;
   return (
     <div className="grid grid-cols-2 lg:grid-cols-6 sm:grid-cols-4 p-4 gap-3">
       {completeAnime.map((anime, index) => (

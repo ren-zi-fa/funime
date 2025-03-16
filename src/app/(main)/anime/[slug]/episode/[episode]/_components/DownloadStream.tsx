@@ -3,7 +3,6 @@ import { episode } from "@/types/response";
 type DownloadStreamProps = Pick<episode, "download_urls">;
 
 export default function DownloadStream({ download_urls }: DownloadStreamProps) {
-  console.log(download_urls);
   return (
     <div className="bg-gray-100 p-2">
       {download_urls.mp4.map((item, index) => (

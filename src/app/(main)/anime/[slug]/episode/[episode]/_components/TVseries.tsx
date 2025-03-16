@@ -36,7 +36,7 @@ export default function TVseries({
   };
   return (
     <div className="p-4">
-      <h1>{episode}</h1>
+      <h1 className="text-center">{episode}</h1>
       <iframe
         src={stream_url}
         className="h-[200px] w-full rounded-xl sm:h-[300px] sm:w-full md:h-[400px] md:w-full lg:h-[500px] lg:w-full xl:h-[600px] xl:w-full"

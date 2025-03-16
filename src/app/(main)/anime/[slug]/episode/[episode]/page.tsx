@@ -5,6 +5,7 @@ import { notFound, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import TVseries from "./_components/TVseries";
 import DownloadStream from "./_components/DownloadStream";
+import LoadingGif from "@/components/layout/loadGift";
 
 export default function EpisodePage() {
   const { episode, slug } = useParams();
@@ -18,7 +19,7 @@ export default function EpisodePage() {
       });
     }
   }, [slug, episode]);
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingGif/>;
 
   if (!loading && data === null) return notFound();
   return (
@@ -34,6 +35,7 @@ export default function EpisodePage() {
             episodeSlug={episode as string}
             slug={slug as string}
           />
+          <h1 className="text-center  text-2xl font-semibold">Download</h1>
           <DownloadStream download_urls={data.download_urls}/>
         </div>
       )}
