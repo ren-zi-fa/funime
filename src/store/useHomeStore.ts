@@ -1,4 +1,7 @@
-import { completeAnimeSchema, ongoingAnimeSchema } from "@/schemas/anime.schema";
+import {
+  completeAnimeSchema,
+  ongoingAnimeSchema,
+} from "@/schemas/anime.schema";
 import { CompleteAnime, OngoingAnime } from "@/types";
 import { z } from "zod";
 import { create } from "zustand";
@@ -24,21 +27,30 @@ export const useHomeStore = create<AnimeState>((set) => ({
     set({ loading: true, error: null });
 
     try {
-      const response = await fetch(`/api/home`, { next: { revalidate: 10 } });
+      const response = await fetch(`/api/home`, { cache: "no-store" });
       const result = await response.json();
 
-      const ongoingValidation = ongoingAnimeListSchema.safeParse(result.data.ongoing_anime);
-      const completeValidation = CompleteAnimeListSchema.safeParse(result.data.complete_anime);
+      const ongoingValidation = ongoingAnimeListSchema.safeParse(
+        result.data.ongoing_anime
+      );
+      const completeValidation = CompleteAnimeListSchema.safeParse(
+        result.data.complete_anime
+      );
 
       set({
-        ongoingAnime: ongoingValidation.data || [], 
+        ongoingAnime: ongoingValidation.data || [],
         completeAnime: completeValidation.data || [],
         loading: false,
       });
-
     } catch (error) {
       console.error("Fetch Anime Error:", error);
-      set({ error: error instanceof Error ? error.message : "Failed to fetch anime  home data", loading: false });
+      set({
+        error:
+          error instanceof Error
+            ? error.message
+            : "Failed to fetch anime  home data",
+        loading: false,
+      });
     }
   },
 }));

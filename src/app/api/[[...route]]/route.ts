@@ -7,7 +7,7 @@ import search from "./search";
 import test from "./test";
 import batch from "./batch";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 const app = new Hono().basePath("/api");
 

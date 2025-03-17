@@ -18,7 +18,7 @@ export const useEpisodeStore = create<AnimeState>((set) => ({
     set({ loading: true, error: null });
     try {
       const response = await fetch(`/api/anime/${slug}/episodes/${episode}`, {
-        next: { revalidate: 10 },
+        cache:"no-store",
       });
       const result = await response.json();
       const validationEpisode = episodeSchema.safeParse(result.data)

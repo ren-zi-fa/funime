@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FunimeDesu
 
-## Getting Started
+FunimeDesu adalah platform untuk streaming dan mengunduh anime dengan berbagai fitur unggulan, seperti download batch, download single episode, dan streaming anime tanpa iklan. Data diambil dari **Otakudesu**, sehingga pengguna dapat menikmati anime favorit mereka dengan lebih mudah dan nyaman.
 
-First, run the development server:
+## ✨ Fitur Utama
+- **Streaming Anime**: Tonton anime langsung tanpa perlu mengunduh.
+- **Download Single Episode**: Unduh episode tertentu dari anime pilihanmu.
+- **Download Batch**: Unduh semua episode dalam satu paket untuk kemudahan.
+- **Tanpa Iklan**: Nikmati pengalaman tanpa gangguan iklan yang mengganggu.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📦 Teknologi & Dependensi
+Proyek ini menggunakan berbagai library dan framework untuk meningkatkan performa serta pengalaman pengguna:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🔹 **Frontend & UI**
+- `next` (15.2.2) - Framework React untuk SSR dan SSG
+- `react` (19.0.0) - Library UI utama
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🔹 **State Management**
+- `zustand` (5.0.3) - State management ringan dan mudah digunakan
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🔹 **API & Data Fetching**
+- `axios` (1.8.3) - HTTP client untuk melakukan request ke API
+- `cheerio` (1.0.0) - Web scraping dari Otakudesu
+- `hono` (4.7.4) - Framework backend ringan berbasis Edge Runtime
 
-## Learn More
+### 🔹 **Validasi & Utility**
+- `zod` (3.24.2) - Validasi data yang kuat
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Cara Menjalankan Proyek
+1. **Clone repositori ini**
+   ```sh
+   git clone https://github.com/username/funimedesu.git
+   cd funimedesu
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install dependensi**
+   ```sh
+   bun install  # atau npm install / yarn install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Jalankan server lokal**
+   ```sh
+   bun run dev  # atau npm run dev / yarn dev
+   ```
 
-## Deploy on Vercel
+4. **Akses aplikasi**
+   Buka `http://localhost:3000` di browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📜 Lisensi
+FunimeDesu dikembangkan untuk keperluan edukasi dan tidak memiliki afiliasi resmi dengan Otakudesu.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Dikembangkan dengan ❤️ oleh **Renzi Febriandika**
+

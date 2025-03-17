@@ -18,7 +18,7 @@ export const useBatchStore = create<AnimeState>((set) => ({
     set({ loading: true, error: null });
     try {
       const response = await fetch(`/api/batch/${slug}`, {
-        next: { revalidate: 10 },
+        cache:"no-store",
       });
       const result = await response.json();
       const validationBatch = batchSchema.safeParse(result.data)
