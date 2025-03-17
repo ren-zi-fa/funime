@@ -16,7 +16,7 @@ export default function JadwalPage() {
   const { data, fetchSchedule, loading } = useScheduleStore();
   useEffect(() => {
     fetchSchedule();
-  }, []);
+  }, [fetchSchedule]);
 
   if (loading) return <LoadingGif />;
   return (

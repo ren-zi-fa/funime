@@ -1,6 +1,6 @@
 
-import { batchSchema, episodeSchema } from "@/schemas/anime.schema";
-import { BatchType, EpisodeType } from "@/types";
+import { batchSchema } from "@/schemas/anime.schema";
+import { BatchType } from "@/types";
 import { create } from "zustand";
 
 interface AnimeState {
@@ -12,6 +12,7 @@ interface AnimeState {
 export const useBatchStore = create<AnimeState>((set) => ({
   data: null,
   loading: false,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   error: null,
 
   fetchBatch: async (slug) => {

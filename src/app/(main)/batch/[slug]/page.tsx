@@ -9,8 +9,8 @@ export default function BatchPage() {
   const { fetchBatch, data } = useBatchStore();
   useEffect(() => {
     fetchBatch(slug as string);
-  }, [slug]);
-  console.log(data);
+  }, [slug,fetchBatch]);
+
   return (
     <div className="h-full p-4">
       <h1 className="text-center text-xl mb-4">{data?.batch}</h1>

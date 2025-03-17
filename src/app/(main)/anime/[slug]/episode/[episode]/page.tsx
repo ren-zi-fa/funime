@@ -18,7 +18,7 @@ export default function EpisodePage() {
         setLoading(false);
       });
     }
-  }, [slug, episode]);
+  }, [slug, episode,fetchAnimeEpisode]);
   if (loading) return <LoadingGif/>;
 
   if (!loading && data === null) return notFound();

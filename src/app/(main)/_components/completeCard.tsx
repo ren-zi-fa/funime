@@ -13,7 +13,7 @@ export default function CompletedCard() {
   const { completeAnime, fetchAnime, loading } = useHomeStore();
   useEffect(() => {
     fetchAnime();
-  }, []);
+  }, [fetchAnime]);
   if (loading) return <LoadingGif/>;
   return (
     <div className="grid grid-cols-2 lg:grid-cols-6 sm:grid-cols-4 p-4 gap-3">

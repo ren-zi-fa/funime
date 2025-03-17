@@ -11,7 +11,7 @@ export const runtime = "edge";
 
 const app = new Hono().basePath("/api");
 
-const routes = app
+export const routes = app
   .route("/anime", anime)
   .route("/home", home)
   .route("/schedule", schedule)
@@ -24,4 +24,4 @@ export const POST = handle(app);
 export const PATCH = handle(app);
 export const DELETE = handle(app);
 
-export type AppType = typeof routes;
+

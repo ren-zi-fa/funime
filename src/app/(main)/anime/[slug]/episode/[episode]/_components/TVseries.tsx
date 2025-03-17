@@ -1,10 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { episodeSchema } from "@/schemas/anime.schema";
 import { EpisodeType } from "@/types";
 import { useRouter } from "next/navigation";
-import { z } from "zod";
 
 type TVseriesProps = Omit<
   EpisodeType,

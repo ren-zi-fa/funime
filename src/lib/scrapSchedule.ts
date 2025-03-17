@@ -1,7 +1,6 @@
-import { scheduleByDaySchema } from '@/schemas/anime.schema';
+
 import { ScheduleByDay } from '@/types';
 import { load } from 'cheerio';
-import { z } from 'zod';
 
 
 const extractSlugFromUrl = (url: string): string => {

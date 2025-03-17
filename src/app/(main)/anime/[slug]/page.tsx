@@ -5,7 +5,7 @@ import { useAnimeSlugStore } from "@/store/useAnimeSlugStore";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function AnimeDetail() {
   const { slug } = useParams();
@@ -16,7 +16,7 @@ export default function AnimeDetail() {
     if (slug) {
       fetchAnimeDetail(slug as string);
     }
-  }, [slug]);
+  }, [slug,fetchAnimeDetail]);
   if (loading) return <LoadingGif />;
   if (error) return notFound();
 
@@ -48,7 +48,7 @@ export default function AnimeDetail() {
             <li>Studio: {data.studio}</li>
             <li>
               Genre:{" "}
-              {data.genres.map((item: any, index: number) => (
+              {data.genres.map((item, index: number) => (
                 <span key={index} className="mr-2">
                   {item.name}
                 </span>

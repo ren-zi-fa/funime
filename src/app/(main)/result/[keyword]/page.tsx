@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 export default function ResultSearch() {
   const { keyword } = useParams();
-  const { data, fetchResult,error } = useSearchStore();
+  const { data, fetchResult } = useSearchStore();
   const [loading, setLoading,] = useState(true);
   useEffect(() => {
     if (keyword) {
@@ -20,7 +20,7 @@ export default function ResultSearch() {
         setLoading(false);
       });
     }
-  }, [keyword]);
+  }, [keyword,fetchResult]);
   if (loading) return <LoadingGif />;
 
  
@@ -32,7 +32,7 @@ export default function ResultSearch() {
       </h1>
       {data && (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4  md:grid-cols-6 lg:grid-cols-6 p-4">
-          {data.map((item: any) => (
+          {data.map((item) => (
             <Card
               key={item.slug}
               className="relative group shadow-md py-2 px-2 rounded-none  h-50 w-40 cursor-pointer"

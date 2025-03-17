@@ -13,7 +13,7 @@ export default function OngoingCard() {
   const { fetchAnime, loading, ongoingAnime } = useHomeStore();
   useEffect(() => {
     fetchAnime();
-  }, []);
+  }, [fetchAnime]);
   if (loading) return <LoadingGif/>;
 
   return (
