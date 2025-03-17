@@ -32,7 +32,7 @@ export const useAnimeSlugStore = create<AnimeState>((set) => ({
 
       set({ data: validationResult.data, loading: false });
     } catch (error) {
-      set({ error: "Failed to fetch anime data" });
+      set({ error: "Failed to fetch anime single data" });
     } finally {
       set({ loading: false });
     }

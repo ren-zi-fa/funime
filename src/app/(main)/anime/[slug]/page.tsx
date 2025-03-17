@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 export default function AnimeDetail() {
   const { slug } = useParams();
 
-  const { fetchAnimeDetail, data, loading,error } = useAnimeSlugStore();
+  const { fetchAnimeDetail, data, loading, error } = useAnimeSlugStore();
 
   useEffect(() => {
     if (slug) {
@@ -18,7 +18,7 @@ export default function AnimeDetail() {
     }
   }, [slug]);
   if (loading) return <LoadingGif />;
- if(error)return notFound()
+  if (error) return notFound();
 
   return (
     <div className="h-full bg-gray-300/30 mt-2 flex flex-col space-y-1 px-2">
@@ -76,10 +76,16 @@ export default function AnimeDetail() {
           ))}
         </div>
       )}
-      <h1 className="text-center">Download Batch</h1>
-      <div className="flex flex-col ">
-      {data?.batch?.slug}
-      </div>
+      {data?.batch && (
+        <a
+        className="text-center underline text-red-500 my-5" 
+          href={`/batch/${data?.batch?.slug}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Dwonload Batch {data?.title}
+        </a>
+      )}
     </div>
   );
 }

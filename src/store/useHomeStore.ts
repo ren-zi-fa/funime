@@ -38,7 +38,7 @@ export const useHomeStore = create<AnimeState>((set) => ({
 
     } catch (error) {
       console.error("Fetch Anime Error:", error);
-      set({ error: error instanceof Error ? error.message : "Failed to fetch anime data", loading: false });
+      set({ error: error instanceof Error ? error.message : "Failed to fetch anime  home data", loading: false });
     }
   },
 }));

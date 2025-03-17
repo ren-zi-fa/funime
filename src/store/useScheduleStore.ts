@@ -29,7 +29,7 @@ export const useScheduleStore = create<AnimeState>((set) => ({
       });
       
     } catch (error) {
-      set({ error: "Failed to fetch anime data", loading: false });
+      set({ error: "Failed to fetch anime schedule data", loading: false });
     }
   },
 }));

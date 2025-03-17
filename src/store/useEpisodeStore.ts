@@ -30,7 +30,7 @@ export const useEpisodeStore = create<AnimeState>((set) => ({
         loading: false,
       });
     } catch (error) {
-      set({ error: "Failed to fetch anime data", loading: false });
+      set({ error: "Failed to fetch anime episode data", loading: false });
     }
   },
 }));

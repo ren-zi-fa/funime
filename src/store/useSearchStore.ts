@@ -28,7 +28,7 @@ export const useSearchStore = create<AnimeState>((set) => ({
         data: validationResultSearch.data,
       });
     } catch (error) {
-      set({ error: "Failed to fetch anime data" });
+      set({ error: "Failed to fetch anime search data" });
     }
   },
 }));
