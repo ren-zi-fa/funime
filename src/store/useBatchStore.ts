@@ -12,7 +12,6 @@ interface AnimeState {
 export const useBatchStore = create<AnimeState>((set) => ({
   data: null,
   loading: false,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   error: null,
 
   fetchBatch: async (slug) => {

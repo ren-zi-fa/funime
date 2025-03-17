@@ -11,7 +11,6 @@ interface AnimeState {
 
 export const useAnimeSlugStore = create<AnimeState>((set) => ({
   data: null,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   error: null,
   loading: false,
 
