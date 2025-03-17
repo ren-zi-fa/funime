@@ -5,6 +5,7 @@ import home from "./home";
 import schedule from "./schedule";
 import search from "./search";
 import test from "./test";
+import batch from "./batch";
 
 export const runtime = "edge";
 
@@ -15,6 +16,7 @@ const routes = app
   .route("/home", home)
   .route("/schedule", schedule)
   .route("/search", search)
+  .route("/batch", batch)
   .route("/", test);
 
 export const GET = handle(app);

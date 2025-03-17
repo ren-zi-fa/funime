@@ -76,6 +76,10 @@ export default function AnimeDetail() {
           ))}
         </div>
       )}
+      <h1 className="text-center">Download Batch</h1>
+      <div className="flex flex-col ">
+      {data?.batch?.slug}
+      </div>
     </div>
   );
 }
