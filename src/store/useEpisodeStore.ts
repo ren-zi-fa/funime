@@ -1,4 +1,5 @@
 
+import { episodeSchema } from "@/schemas/anime.schema";
 import { EpisodeType } from "@/types";
 import { create } from "zustand";
 
@@ -20,11 +21,12 @@ export const useEpisodeStore = create<AnimeState>((set) => ({
         next: { revalidate: 10 },
       });
       const result = await response.json();
+      const validationEpisode = episodeSchema.safeParse(result.data)
       if (!response.ok) {
         set({ error: result });
       }
       set({
-        data: result.data,
+        data: validationEpisode.data,
         loading: false,
       });
     } catch (error) {

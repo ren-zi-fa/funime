@@ -25,7 +25,7 @@ export default function EpisodePage() {
   return (
     <div className="">
       {data && (
-        <div className="flex flex-col space-y-3 h-screen">
+        <div className="flex flex-col space-y-3 h-full">
           <TVseries
             stream_url={data?.stream_url}
             episode={data?.episode}

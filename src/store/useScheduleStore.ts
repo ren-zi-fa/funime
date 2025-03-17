@@ -1,7 +1,10 @@
 
+import { scheduleByDaySchema } from "@/schemas/anime.schema";
 import { ScheduleByDay } from "@/types";
+import { z } from "zod";
 import { create } from "zustand";
 
+const scheduleListSchema = z.array(scheduleByDaySchema)
 interface AnimeState {
   data: ScheduleByDay[];
   loading: boolean;
@@ -19,10 +22,12 @@ export const useScheduleStore = create<AnimeState>((set) => ({
         next: { revalidate: 10 },
       });
       const result = await response.json();
+      const validationSchedule = scheduleListSchema.safeParse(result.data)
       set({
-        data: result.data,
+        data: validationSchedule.data || [],
         loading: false,
       });
+      
     } catch (error) {
       set({ error: "Failed to fetch anime data", loading: false });
     }

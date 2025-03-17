@@ -30,10 +30,6 @@ export const useAnimeSlugStore = create<AnimeState>((set) => ({
 
       const validationResult = animeSchema.safeParse(result.data);
 
-      if (!validationResult.success) {
-        console.error("Validation Error:", validationResult.error.format());
-        throw new Error("Invalid anime data format");
-      }
       set({ data: validationResult.data, loading: false });
     } catch (error) {
       set({ error: "Failed to fetch anime data" });
