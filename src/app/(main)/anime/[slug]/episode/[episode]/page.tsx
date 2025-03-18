@@ -22,6 +22,7 @@ export default function EpisodePage() {
   if (loading) return <LoadingGif/>;
 
   if (!loading && data === null) return notFound();
+  console.log(data)
   return (
     <div className="h-screen">
       {data && (
