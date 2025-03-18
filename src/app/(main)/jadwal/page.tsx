@@ -8,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 import { useScheduleStore } from "@/store/useScheduleStore";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -21,12 +22,25 @@ export default function JadwalPage() {
   if (loading) return <LoadingGif />;
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-4 mx-auto w-fit justify-center">
+      <h1
+        className="text-center font-extrabold text-2xl my-8 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
+        style={{
+          textShadow: "4px 4px 10px rgba(0, 0, 0, 0.5)",
+        }}
+      >
+       Jadwal Rilis
+      </h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mx-auto w-fit justify-center md:gap-4">
         {data.map((item, index) => (
-          <Table key={index} className="w-[250px] border border-white ">
+          <Table key={index} className="w-[250px] border-2 border-black my-2">
             <TableHeader>
               <TableRow>
-                <TableHead className="text-white bg-gray-700 text-center">
+                <TableHead
+                  className={cn(
+                    "text-center bg-gray-700",
+                    item.day === "Random" ? "text-blue-300 " : "text-white"
+                  )}
+                >
                   {item.day}
                 </TableHead>
               </TableRow>
@@ -39,7 +53,7 @@ export default function JadwalPage() {
                       href={`/anime/${anime.slug}`}
                       className="hover:underline"
                     >
-                      {anime.anime_name.split(" ").slice(0, 6).join(" ")}
+                      {anime.anime_name.split(" ").slice(0, 4).join(" ")}
                     </Link>
                   </TableCell>
                 </TableRow>

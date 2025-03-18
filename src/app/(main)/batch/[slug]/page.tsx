@@ -1,18 +1,29 @@
 "use client";
 
+import LoadingGif from "@/components/layout/loadGift";
 import { useBatchStore } from "@/store/useBatchStore";
-import { useParams } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { useEffect } from "react";
 
 export default function BatchPage() {
   const { slug } = useParams();
-  const { fetchBatch, data } = useBatchStore();
+  const { fetchBatch, data,loading,error } = useBatchStore();
   useEffect(() => {
     fetchBatch(slug as string);
   }, [slug,fetchBatch]);
-
+  if (loading) return <LoadingGif/>;
+  if(error) return notFound();
+  console.log(data)
   return (
     <div className="h-full p-4">
+       <h1
+        className="text-center font-extrabold text-2xl my-8 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
+        style={{
+          textShadow: "4px 4px 10px rgba(0, 0, 0, 0.5)",
+        }}
+      >
+       Download Batch
+      </h1>
       <h1 className="text-center text-xl mb-4">{data?.batch}</h1>
       <div className="">
         {data?.download_urls.map((item, index) => (

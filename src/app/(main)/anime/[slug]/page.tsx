@@ -16,12 +16,12 @@ export default function AnimeDetail() {
     if (slug) {
       fetchAnimeDetail(slug as string);
     }
-  }, [slug,fetchAnimeDetail]);
+  }, [slug, fetchAnimeDetail]);
   if (loading) return <LoadingGif />;
   if (error) return notFound();
 
   return (
-    <div className="h-full bg-gray-300/30 mt-2 flex flex-col space-y-1 px-2">
+    <div className="h-full bg-gray-300/30 mt-2 flex flex-col space-y-4 px-2">
       {data && (
         <div className=" flex-col space-y-1 px-2">
           <div className="p-4 bg-black text-white">
@@ -35,30 +35,51 @@ export default function AnimeDetail() {
             className="mx-auto border-2"
             priority
           />
-          <ul>
-            <li>Judul: {data.title}</li>
-            <li>Japanese: {data.japanese_title}</li>
-            <li>Skor: {data.rating}</li>
-            <li>Produser: {data.produser}</li>
-            <li>Tipe: {data.type}</li>
-            <li>Status: {data.status}</li>
-            <li>Total Episode: {data.episode_count}</li>
-            <li>Durasi: {data.duration}</li>
-            <li>Tanggal Rilis: {data.release_date}</li>
-            <li>Studio: {data.studio}</li>
+          <ul className="grid grid-cols-[150px_1fr] gap-y-2">
+            <li className="font-semibold">Judul</li>
+            <li>: {data.title}</li>
+
+            <li className="font-semibold">Japanese</li>
+            <li>: {data.japanese_title}</li>
+
+            <li className="font-semibold">Skor</li>
+            <li>: {data.rating}</li>
+
+            <li className="font-semibold">Produser</li>
+            <li>: {data.produser}</li>
+
+            <li className="font-semibold">Tipe</li>
+            <li>: {data.type}</li>
+
+            <li className="font-semibold">Status</li>
+            <li>: {data.status}</li>
+
+            <li className="font-semibold">Total Episode</li>
+            <li>: {data.episode_count}</li>
+
+            <li className="font-semibold">Durasi</li>
+            <li>: {data.duration}</li>
+
+            <li className="font-semibold">Tanggal Rilis</li>
+            <li>: {data.release_date}</li>
+
+            <li className="font-semibold">Studio</li>
+            <li>: {data.studio}</li>
+
+            <li className="font-semibold">Genre</li>
             <li>
-              Genre:{" "}
               {data.genres.map((item, index: number) => (
                 <span key={index} className="mr-2">
-                  {item.name}
+                 : {item.name}
                 </span>
               ))}
             </li>
+
             {data.synopsis && (
-              <li>
-                Synopsis: <br />
-                {data.synopsis}
-              </li>
+              <>
+                <li className="font-semibold">Synopsis:</li>
+                <li>: {data.synopsis}</li>
+              </>
             )}
           </ul>
         </div>
@@ -78,7 +99,7 @@ export default function AnimeDetail() {
       )}
       {data?.batch && (
         <a
-        className="text-center underline text-red-500 my-5" 
+          className="text-center underline text-red-500 my-5"
           href={`/batch/${data?.batch?.slug}`}
           target="_blank"
           rel="noopener noreferrer"

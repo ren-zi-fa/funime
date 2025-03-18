@@ -23,7 +23,7 @@ export default function EpisodePage() {
 
   if (!loading && data === null) return notFound();
   return (
-    <div className="">
+    <div className="h-screen">
       {data && (
         <div className="flex flex-col space-y-3 h-full">
           <TVseries

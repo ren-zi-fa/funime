@@ -7,17 +7,19 @@ import { useHomeStore } from "@/store/useHomeStore";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { useEffect } from "react";
 
 export default function OngoingCard() {
-  const { fetchAnime, loading, ongoingAnime } = useHomeStore();
+  const { fetchAnime, loading, ongoingAnime,error } = useHomeStore();
   useEffect(() => {
     fetchAnime();
   }, [fetchAnime]);
   if (loading) return <LoadingGif/>;
+  if(error) return notFound()
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-6 p-4 sm:grid-cols-4 gap-3">
+    <div className="grid grid-cols-2 lg:grid-cols-6 sm:grid-cols-4 gap-3">
       {ongoingAnime.map((anime, index) => (
         <Card
           className="group shadow-md h-50 w-40 py-2 px-2 rounded-none cursor-pointer"

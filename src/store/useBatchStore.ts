@@ -1,4 +1,3 @@
-
 import { batchSchema } from "@/schemas/anime.schema";
 import { BatchType } from "@/types";
 import { create } from "zustand";
@@ -18,19 +17,20 @@ export const useBatchStore = create<AnimeState>((set) => ({
     set({ loading: true, error: null });
     try {
       const response = await fetch(`/api/batch/${slug}`, {
-        cache:"no-store",
+        cache: "no-store",
       });
       const result = await response.json();
-      const validationBatch = batchSchema.safeParse(result.data)
+      const validationBatch = batchSchema.safeParse(result.data);
       if (!response.ok) {
         set({ error: result });
       }
       set({
         data: validationBatch.data,
-        loading: false,
       });
     } catch (error) {
       set({ error: "Failed to fetch anime  batch data", loading: false });
+    } finally {
+      set({ loading: false });
     }
   },
 }));
