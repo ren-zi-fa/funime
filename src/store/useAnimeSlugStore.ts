@@ -19,7 +19,10 @@ export const useAnimeSlugStore = create<AnimeState>((set) => ({
 
     try {
       const response = await fetch(`/api/anime/${slug}`, {
-        cache:"no-store",
+        cache: "no-store",
+        headers: {
+          "x-api-key": process.env.NEXT_PUBLIC_API_SECRET_KEY || "",
+        },
       });
 
       const result = await response.json();

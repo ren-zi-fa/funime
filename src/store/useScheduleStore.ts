@@ -19,6 +19,9 @@ export const useScheduleStore = create<AnimeState>((set) => ({
     try {
       const response = await fetch("/api/schedule", {
         cache: "no-store",
+        headers: {
+          "x-api-key": process.env.NEXT_PUBLIC_API_SECRET_KEY || "",
+        },
       });
       const result = await response.json();
       const validationSchedule = scheduleListSchema.safeParse(result.data);

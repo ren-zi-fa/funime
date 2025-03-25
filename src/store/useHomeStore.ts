@@ -27,7 +27,12 @@ export const useHomeStore = create<AnimeState>((set) => ({
     set({ loading: true, error: null });
 
     try {
-      const response = await fetch(`/api/home`, { cache: "no-store" });
+      const response = await fetch(`/api/home`, {
+        cache: "no-store",
+        headers: {
+          "x-api-key": process.env.NEXT_PUBLIC_API_SECRET_KEY || "",
+        },
+      });
       const result = await response.json();
 
       const ongoingValidation = ongoingAnimeListSchema.safeParse(

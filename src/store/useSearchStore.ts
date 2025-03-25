@@ -18,6 +18,9 @@ export const useSearchStore = create<AnimeState>((set) => ({
     try {
       const response = await fetch(`/api/search/${keyword}`, {
         next: { revalidate: 2 },
+        headers: {
+          "x-api-key": process.env.NEXT_PUBLIC_API_SECRET_KEY || "",
+        },
       });
       const result = await response.json();
       const validationResultSearch = searchListSchema.safeParse(result.data);

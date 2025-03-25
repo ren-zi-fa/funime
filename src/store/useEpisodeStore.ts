@@ -1,4 +1,3 @@
-
 import { episodeSchema } from "@/schemas/anime.schema";
 import { EpisodeType } from "@/types";
 import { create } from "zustand";
@@ -18,10 +17,13 @@ export const useEpisodeStore = create<AnimeState>((set) => ({
     set({ loading: true, error: null });
     try {
       const response = await fetch(`/api/anime/${slug}/episodes/${episode}`, {
-        cache:"no-store",
+        cache: "no-store",
+        headers: {
+          "x-api-key": process.env.NEXT_PUBLIC_API_SECRET_KEY || "",
+        },
       });
       const result = await response.json();
-      const validationEpisode = episodeSchema.safeParse(result.data)
+      const validationEpisode = episodeSchema.safeParse(result.data);
       if (!response.ok) {
         set({ error: result });
       }
