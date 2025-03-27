@@ -1,5 +1,5 @@
 import {
-    animeSchema,
+  animeSchema,
   batchSchema,
   completeAnimeSchema,
   episodeListSchema,
@@ -19,7 +19,7 @@ type EpisodeType = z.infer<typeof episodeSchema>;
 type OngoingAnime = z.infer<typeof ongoingAnimeSchema>;
 type SearchResultAnime = z.infer<typeof searchResultAnimeSchema>;
 type Anime = z.infer<typeof animeSchema>;
-type ScheduleByDay = z.infer<typeof scheduleByDaySchema>
+type ScheduleByDay = z.infer<typeof scheduleByDaySchema>;
 
 export type {
   GenreType,
@@ -30,5 +30,5 @@ export type {
   OngoingAnime,
   SearchResultAnime,
   Anime,
-  ScheduleByDay
+  ScheduleByDay,
 };

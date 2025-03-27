@@ -18,16 +18,17 @@ export default function EpisodePage() {
         setLoading(false);
       });
     }
-  }, [slug, episode,fetchAnimeEpisode]);
-  if (loading) return <LoadingGif/>;
+  }, [slug, episode, fetchAnimeEpisode]);
+  if (loading) return <LoadingGif />;
 
   if (!loading && data === null) return notFound();
-  console.log(data)
+  console.log(data);
   return (
     <div className="h-screen">
       {data && (
         <div className="flex flex-col space-y-3 h-full">
           <TVseries
+            download_urls={data.download_urls}
             stream_url={data?.stream_url}
             episode={data?.episode}
             has_next_episode={data.has_next_episode}
@@ -37,10 +38,9 @@ export default function EpisodePage() {
             slug={slug as string}
           />
           <h1 className="text-center  text-2xl font-semibold">Download</h1>
-          <DownloadStream download_urls={data.download_urls}/>
+          <DownloadStream download_urls={data.download_urls} />
         </div>
       )}
-
     </div>
   );
 }
