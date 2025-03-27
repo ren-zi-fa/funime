@@ -22,9 +22,9 @@ export default function EpisodePage() {
   if (loading) return <LoadingGif />;
 
   if (!loading && data === null) return notFound();
-  console.log(data);
+
   return (
-    <div className="h-screen">
+    <div className="h-full">
       {data && (
         <div className="flex flex-col space-y-3 h-full">
           <TVseries
