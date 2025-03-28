@@ -21,7 +21,7 @@ export default function AnimeDetail() {
   if (error) return notFound();
 
   return (
-    <div className="h-full bg-gray-300/30 mt-2 flex flex-col space-y-4 px-2">
+    <div className="h-full bg-gray-300/30 mt-2 flex flex-col space-y-4 px-2 overflow-auto ">
       {data && (
         <div className=" flex-col space-y-1 px-2">
           <div className="p-4 bg-black text-white">
@@ -35,7 +35,7 @@ export default function AnimeDetail() {
             className="mx-auto border-2"
             priority
           />
-          <ul className="grid grid-cols-[150px_1fr] gap-y-2">
+          <ul className="grid grid-cols-[150px_minmax(0,1fr)] w-full gap-y-2">
             <li className="font-semibold">Judul</li>
             <li>: {data.title}</li>
 
@@ -46,7 +46,9 @@ export default function AnimeDetail() {
             <li>: {data.rating}</li>
 
             <li className="font-semibold">Produser</li>
-            <li>: {data.produser}</li>
+            <li className="break-all w-full overflow-hidden">
+              : {data.produser}
+            </li>
 
             <li className="font-semibold">Tipe</li>
             <li>: {data.type}</li>
@@ -66,11 +68,11 @@ export default function AnimeDetail() {
             <li className="font-semibold">Studio</li>
             <li>: {data.studio}</li>
 
-            <li className="font-semibold">Genre</li>
-            <li>
+            <li className="font-semibold">Genre </li>
+            <li className="">
               {data.genres.map((item, index: number) => (
                 <span key={index} className="mr-2">
-                 : {item.name}
+                  : {item.name}
                 </span>
               ))}
             </li>
@@ -78,7 +80,9 @@ export default function AnimeDetail() {
             {data.synopsis && (
               <>
                 <li className="font-semibold">Synopsis:</li>
-                <li>: {data.synopsis}</li>
+                <li className="break-all w-full max-w-xs md:max-w-full">
+                  : {data.synopsis}
+                </li>
               </>
             )}
           </ul>
