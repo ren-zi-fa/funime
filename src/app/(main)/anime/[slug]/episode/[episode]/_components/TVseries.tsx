@@ -62,7 +62,7 @@ export default function TVseries({
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Media Provider</SelectLabel>
-              {download_urls.mp4?.map((resolution: any) =>
+              {download_urls.mp4?.map((resolution) =>
                 resolution.urls.map((url: any) => (
                   <SelectItem
                     value={url.url}

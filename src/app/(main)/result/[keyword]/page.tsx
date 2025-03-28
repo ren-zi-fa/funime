@@ -11,8 +11,8 @@ import { useEffect, useState } from "react";
 
 export default function ResultSearch() {
   const { keyword } = useParams();
-  const { data, fetchResult } = useSearchStore();
-  const [loading, setLoading,] = useState(true);
+  const { data, fetchResult, error } = useSearchStore();
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (keyword) {
       setLoading(true);
@@ -20,13 +20,18 @@ export default function ResultSearch() {
         setLoading(false);
       });
     }
-  }, [keyword,fetchResult]);
+  }, [keyword, fetchResult]);
   if (loading) return <LoadingGif />;
-
- 
+  if (error) {
+    return (
+      <h1 className="text-3xl font-bold text-center">
+        Ada perbaikan di sisi servrer
+      </h1>
+    );
+  }
 
   return (
-    <div className="container py-6 flex flex-col gap-4 h-screen">
+    <div className="container py-6 flex flex-col gap-4 h-full">
       <h1 className="text-center text-xl font-bold">
         Hasil pencarian: {decodeURIComponent(keyword as string)}
       </h1>

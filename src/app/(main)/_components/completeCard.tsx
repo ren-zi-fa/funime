@@ -15,8 +15,13 @@ export default function CompletedCard() {
   useEffect(() => {
     fetchAnime();
   }, [fetchAnime]);
-  if (loading) return <LoadingGif/>;
-  if(error) return notFound()
+  if (loading) return <LoadingGif />;
+  if (error)
+    return (
+      <h1 className="text-3xl font-bold text-center">
+        Ada perbaikan di sisi servrer
+      </h1>
+    );
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-6 sm:grid-cols-4  gap-3">
