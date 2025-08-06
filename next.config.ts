@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
         hostname: "otakudesu.cloud",
       },
     ],
+    unoptimized: true,
   },
   typescript: {
     ignoreBuildErrors: true,
